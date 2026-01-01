@@ -1,0 +1,30 @@
+# Render deployment configuration
+# Place this file in your repository root as render.yaml
+
+services:
+  - type: worker
+    name: academixsphere-notifications
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    plan: starter
+    region: oregon
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SUPABASE_URL
+        sync: false  # Set this in Render dashboard
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false  # Set this in Render dashboard
+      - key: FIREBASE_PROJECT_ID
+        sync: false  # Set this in Render dashboard
+      - key: FIREBASE_PRIVATE_KEY
+        sync: false  # Set this in Render dashboard
+      - key: FIREBASE_CLIENT_EMAIL
+        sync: false  # Set this in Render dashboard
+      - key: BATCH_SIZE
+        value: "50"
+      - key: POLL_INTERVAL_MS
+        value: "5000"
+      - key: MAX_RETRIES
+        value: "3"

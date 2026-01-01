@@ -334,3 +334,13 @@ class NotificationWorker {
 }
 
 module.exports = NotificationWorker;
+// ===== WORKER BOOTSTRAP (REQUIRED) =====
+(async () => {
+  try {
+    const worker = new NotificationWorker();
+    await worker.start();
+  } catch (error) {
+    console.error('💥 Failed to start Notification Worker:', error);
+    process.exit(1);
+  }
+})();
